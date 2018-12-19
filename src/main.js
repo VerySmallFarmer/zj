@@ -1,25 +1,10 @@
 import Vue from 'vue'
-import App from './App.vue'
 import VueRouter from 'vue-router';
-
-Vue.use(VueRouter)
-import HelloWorld from './components/HelloWorld.vue'
-
-const Foo = { template: '<div>foo</div>' };
-const router = new VueRouter({
-  routes :[
-    {
-      path:'/index',
-      component:HelloWorld
-    },
-    {
-      path:'/foo',
-      component:Foo
-    }
-  ]
-})
+import router from './router'
+import App from './App.vue'
 
 Vue.config.productionTip = false
+Vue.use(VueRouter)
 
 new Vue({
   router,
