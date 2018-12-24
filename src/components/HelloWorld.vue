@@ -19,13 +19,14 @@
       <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
       <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
     </ul>
-    <h3>Ecosystem</h3>
+    <h3>{{name}}</h3>
     <ul>
       <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
       <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
       <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
       <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
+      <li @click="setName">setname</li>
     </ul>
   </div>
 </template>
@@ -35,6 +36,19 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  computed:{
+    name(){
+      return this.$store.state.index.name
+    }
+  },
+  methods:{
+    setName(){
+      this.$store.commit({
+        type:'setName',
+        name:'666'
+      })
+    }
   }
 }
 </script>
