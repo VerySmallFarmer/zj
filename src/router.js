@@ -1,9 +1,8 @@
 import VueRouter from 'vue-router';
-import HelloWorld from './components/HelloWorld.vue'
+import Login from './pages/Login.vue'
 
 export default new VueRouter({
     routes: [
-        { path: '/', redirect: '/index'},
-        { path: '/index', component: HelloWorld}
+        { path: '/login', component: Login}
     ]
 })
