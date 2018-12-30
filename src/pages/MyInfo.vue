@@ -27,7 +27,11 @@
 import { Group } from 'vux'
 import { Cell } from 'vux'
 export default {
-    
+  beforeCreate() {
+    this.$store.commit("pageTitle", {
+      title: '个人中心'
+    })
+  },
   components: {
       Group,
       Cell

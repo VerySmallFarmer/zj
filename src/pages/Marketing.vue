@@ -5,8 +5,8 @@
 export default {
   beforeCreate() {
     this.$store.commit("pageTitle", {
-      title: '数据'
+      title: '营销'
     })
   }
-}
+};
 </script>

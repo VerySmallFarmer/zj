@@ -18,7 +18,8 @@
 .box-inp {
   margin: 0 auto;
   margin-top: 80px;
-  max-width: 300px;
+  margin-bottom: 20px;
+  //max-width: 300px;
 }
 </style>
 
@@ -33,58 +34,63 @@
         <XInput v-model="uid" title="账号：" placeholder="请输入账号"/>
         <XInput v-model="pw" title="密码：" placeholder="请输入密码" type="password"/>
       </Group>
-      <XButton @click.native="login" type="primary">登 录</XButton>
     </div>
+    <XButton @click.native="login" type="primary" :show-loading="btnLoad" :disabled="btnLoad">登 录</XButton>
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import { Group, XInput, XButton } from "vux";
-import { ToastPlugin } from "vux";
 
 export default {
   data: () => ({
-    uid: "",
-    pw: ""
+    uid: '',
+    pw: '',
+    btnLoad: false
   }),
   methods: {
     login: function() {
-      const loginUrl = `/app/index.php?i=1&c=entry&m=ewei_shopv2&do=mobile&r=teacher.loginshuju&tel=${
-        this.uid
-      }&pwd=${this.pw}`;
-      axios({
-        method: "get",
-        url: loginUrl
-      }).then(res => {
-        const token = res.data.token;
-        if (this.uid === "") {
-          this.$vux.toast.show({
-            type: "warn",
-            text: "请输入账号"
-          });
-        } else if (this.pw === "") {
-          this.$vux.toast.show({
-            type: "warn",
-            text: "请输入密码"
-          });
-        } else {
+      const loginUrl = `/app/index.php?i=1&c=entry&m=ewei_shopv2&do=mobile&r=teacher.loginshuju&tel=${this.uid}&pwd=${this.pw}`;
+      if (this.uid === '') {
+            this.$vux.toast.show({
+          type: 'warn',
+          text: '请输入账号'
+        })
+      } else if (this.pw === '') {
+        this.$vux.toast.show({
+          type: 'warn',
+          text: '请输入密码'
+        })
+      } else {
+        this.btnLoad = true
+        axios({
+          method: 'get',
+          url: loginUrl
+        })
+        .then(res => {
+          const token = res.data.token;
+          this.btnLoad = false
           if (token === 0) {
             this.$vux.toast.show({
-              type: "warn",
-              text: "账号或密码错误"
+              type: 'warn',
+              text: '账号或密码错误'
             });
           } else {
-            
+            this.$store.commit('login', {
+              token: res.data.token
+            })
+            this.$router.push({ path: '/data' })
           }
-        }
-      })
-      .catch((err) => {
-        this.$vux.toast.show({
-          type: "warn",
-          text: "网络异常"
-        });
-      })
+        })
+        .catch(() => {
+          this.btnLoad = false
+          this.$vux.toast.show({
+            type: 'warn',
+            text: '网络异常'
+          })
+        })
+      }
     }
   },
   components: {
@@ -92,5 +98,5 @@ export default {
     XButton,
     Group
   }
-};
+}
 </script>

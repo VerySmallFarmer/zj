@@ -1,11 +1,11 @@
 <template>
-  <div></div>
+  <div></div>  
 </template>
 <script>
 export default {
   beforeCreate() {
     this.$store.commit("pageTitle", {
-      title: '数据'
+      title: '教务'
     })
   }
 }
