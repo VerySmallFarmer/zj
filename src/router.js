@@ -5,6 +5,7 @@ import Data from './pages/Data.vue'
 import Marketing from './pages/Marketing.vue'
 import Teaching from './pages/Teaching.vue'
 import MyInfo from './pages/MyInfo.vue'
+import ChangePw from './pages/ChangePw.vue'
 
 export default new VueRouter({
 	routes: [
@@ -27,6 +28,10 @@ export default new VueRouter({
 				{
 					path: '/myinfo',
 					component: MyInfo
+				},
+				{
+					path: '/changepw',
+					component: ChangePw
 				}
 			]
 		}

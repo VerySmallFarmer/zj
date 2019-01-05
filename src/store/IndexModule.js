@@ -3,7 +3,7 @@ export default {
         token: '',
         pageTitle: 'title'
     },
-    getters: {
+     getters: {
         token(state) {
             state.token = state.token || localStorage.getItem('token') || ''
             return state.token
@@ -16,7 +16,7 @@ export default {
         },
         logout(state) {
             state.token = ''
-            localStorage.remove('token')
+            localStorage.removeItem('token')
         },
         pageTitle(state, parameter){
             state.pageTitle = parameter.title

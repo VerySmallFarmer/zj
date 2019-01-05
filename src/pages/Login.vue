@@ -1,6 +1,6 @@
 <style scoped lang="less">
 .container {
-  padding: 20px;
+  padding: 10px 15px;
   padding-top: 60px;
 }
 .box-logo {
@@ -24,23 +24,26 @@
 </style>
 
 <template>
-  <div class="container">
-    <div class="box-logo">
-      <img class="logo" src="./../assets/logo.png" alt>
+  <MainViewBox>
+    <div class="container">
+      <div class="box-logo">
+        <img class="logo" src="./../assets/logo.png" alt>
+      </div>
+      <p class="title">早期教育行业SCRM系统</p>
+      <div class="box-inp">
+        <Group>
+          <XInput v-model="uid" title="账号：" placeholder="请输入账号"/>
+          <XInput v-model="pw" title="密码：" placeholder="请输入密码" type="password"/>
+        </Group>
+      </div>
+      <XButton @click.native="login" type="primary" :show-loading="btnLoad" :disabled="btnLoad">登 录</XButton>
     </div>
-    <p class="title">早期教育行业SCRM系统</p>
-    <div class="box-inp">
-      <Group>
-        <XInput v-model="uid" title="账号：" placeholder="请输入账号"/>
-        <XInput v-model="pw" title="密码：" placeholder="请输入密码" type="password"/>
-      </Group>
-    </div>
-    <XButton @click.native="login" type="primary" :show-loading="btnLoad" :disabled="btnLoad">登 录</XButton>
-  </div>
+  </MainViewBox>
 </template>
 
 <script>
 import axios from "axios";
+import MainViewBox from './../components/MainViewBox.vue'
 import { Group, XInput, XButton } from "vux";
 
 export default {
@@ -94,6 +97,7 @@ export default {
     }
   },
   components: {
+    MainViewBox, 
     XInput,
     XButton,
     Group
