@@ -78,7 +78,7 @@ export default {
             this.$vux.toast.show({
               type: 'warn',
               text: '账号或密码错误'
-            });
+            })
           } else {
             this.$store.commit('login', {
               token: res.data.token
